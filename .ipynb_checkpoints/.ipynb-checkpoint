@@ -123,44 +123,28 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "样本量、年收入大于/小于5万的人、比例"
+    "年收入大于/小于5万的人及比例"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 4,
-   "metadata": {
-    "scrolled": true
-   },
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "45222\n",
-      "11208\n",
-      "34014\n",
-      "24.78439697492371\n"
-     ]
-    }
-   ],
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
    "source": [
-    "sample_size = df.shape[0]\n",
-    "greater_50k_count = (df['income'] == '>50K').sum()\n",
-    "at_most_50k_count = (df['income'] != '>50K').sum()\n",
-    "greater_percent = greater_50k_count / sample_size * 100\n",
-    "\n",
-    "print(sample_size)\n",
-    "print(greater_50k_count)\n",
-    "print(at_most_50k_count)\n",
-    "print(greater_percent)"
+    "sample_size = df.shape[]"
    ]
   },
   {
-   "cell_type": "markdown",
+   "cell_type": "code",
+   "execution_count": 3,
    "metadata": {},
+   "outputs": [],
    "source": [
-    "将数据切分成`特征`和`标签`"
+    "n_records = data.shape[0]\n",
+    "n_greater_50k = (data['income'] == '>50K').sum()\n",
+    "n_at_most_50k = (data['income'] != '>50K').sum()\n",
+    "greater_percent = n_greater_50k / n_records*100"
    ]
   },
   {
@@ -169,15 +153,9 @@
    "metadata": {},
    "outputs": [],
    "source": [
+    "# 将数据切分成`特征`和`标签`\n",
     "income_raw = data['income']\n",
     "features_raw = data.drop('income', axis = 1)"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "归一化数字特征"
    ]
   },
   {
@@ -260,6 +238,7 @@
    "source": [
     "from sklearn.preprocessing import MinMaxScaler\n",
     "\n",
+    "# 归一化数字特征\n",
     "scaler = MinMaxScaler()\n",
     "numerical = ['age', 'education-num', 'capital-gain', 'capital-loss', 'hours-per-week']\n",
     "features_raw[numerical] = scaler.fit_transform(data[numerical])\n",
@@ -271,7 +250,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "One-hot 编码"
+    "One-hot编码"
    ]
   },
   {
